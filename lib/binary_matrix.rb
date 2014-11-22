@@ -1,4 +1,4 @@
-require_relative './binary_matrix/version'
+require "#{File.dirname(__FILE__)}/binary_matrix/version"
 
 class BinaryMatrix
   attr_accessor :size

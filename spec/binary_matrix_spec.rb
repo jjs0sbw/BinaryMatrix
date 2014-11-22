@@ -1,5 +1,5 @@
-require_relative '../lib/binary_matrix'
-require './spec_helper'
+require File.expand_path("../../lib/binary_matrix.rb", __FILE__)
+require "#{File.dirname(__FILE__)}/spec_helper"
 
 describe BinaryMatrix do 
   
