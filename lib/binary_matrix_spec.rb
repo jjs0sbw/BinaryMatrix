@@ -11,4 +11,8 @@ describe BinaryMatrix do
       expect(@binary_matrix).to be_a_kind_of(BinaryMatrix)
     end
   end  
+
+  describe "add" do
+
+  end
 end
