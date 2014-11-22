@@ -1,1 +1,1 @@
-require 'binary_matrix'
+require_relative '../lib/binary_matrix'

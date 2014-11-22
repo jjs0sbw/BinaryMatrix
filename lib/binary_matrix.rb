@@ -1,5 +1,10 @@
-require "binary_matrix/version"
+require_relative './binary_matrix/version'
 
-module BinaryMatrix
-  # Your code goes here...
+class BinaryMatrix
+  attr_accessor :size
+
+  def initialize size
+    @size = size
+  end
+
 end
