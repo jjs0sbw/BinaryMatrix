@@ -1,1 +1,1 @@
-require_relative '../lib/binary_matrix'
+require File.expand_path("../../lib/binary_matrix.rb", __FILE__)
