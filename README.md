@@ -1,6 +1,11 @@
 # BinaryMatrix
 
-TODO: Write a gem description
+An implementation of a binary matrix with Boolean operators.  This program is used to perform 
+Warfield Augumented Boolean Logic (WABL) operations.  WABL operations are a primary component
+system structural modeling.  More information is available at: 
+http://systemsconcept.org/
+https://github.com/jjs0sbw/bsmp
+https://github.com/jjs0sbw/smp
 
 ## Installation
 
@@ -20,7 +25,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Usage instructions are located at the above referenced web sites.
 
 ## Contributing
 
