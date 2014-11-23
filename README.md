@@ -11,6 +11,8 @@ Github:  https://github.com/jjs0sbw/bsmp
 
 Github:  https://github.com/jjs0sbw/smp
 
+Wikipedia:  http://en.wikipedia.org/wiki/Logical_matrix
+
 ## Installation
 
 Add this line to your application's Gemfile:
