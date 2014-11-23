@@ -18,7 +18,7 @@ class BinaryMatrix
     sum
   end
 
-  def add_cell_content(index_1, index_2, number = 1, matrix = bm)
+  def enter_cell_content(index_1, index_2, number = 1, matrix = bm)
     if index_1 == index_2
       number = 0
     end
@@ -26,5 +26,11 @@ class BinaryMatrix
     ti_2 = @bmi.mi.index([index_2])
     matrix[ti_1][ti_2] = number
   end
+
+  def transpose(matrix = bm)
+    new_matrix = @bm.dup
+    t_nm = new_matrix.transpose
+    t_nm.dup
+  end   
 
 end

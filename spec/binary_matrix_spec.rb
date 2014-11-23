@@ -44,16 +44,27 @@ describe "#add" do
   end
 end
 
-describe "#add_cell_content" do
+describe "#enter_cell_content" do
 
-  it "will add a one (1) into a matrix cell" do
-    @binary_matrix.add_cell_content(2, 5)
+  it "will enter a one (1) into a matrix cell" do
+    @binary_matrix.enter_cell_content(2, 5)
     expect(@binary_matrix.add).to be == 1
   end
 
-  it "will add a zero into the cell if the index numbers are the same" do
-     @binary_matrix.add_cell_content(2, 2)
+  it "will enter a zero into the cell if the index numbers are the same" do
+     @binary_matrix.enter_cell_content(2, 2)
     expect(@binary_matrix.add).to be == 0
+  end
+
+end  
+
+describe "#transpose" do
+  it "will transpose the matrix contents" do
+    temp_matrix = Array.new(5) { Array.new(5, 0) }
+    @binary_matrix.enter_cell_content(1, 2)
+    @binary_matrix.enter_cell_content(3, 1)
+    t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
+    expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
   end
 
 end  
