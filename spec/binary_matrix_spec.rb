@@ -28,6 +28,14 @@ describe BinaryMatrix do
       expect(@binary_matrix.bm).to be_a_kind_of(Array)
     end
 
+    it "bm array is filled with zeros" do
+      expect(@binary_matrix.add(@binary_matrix.bm)).to be == 0
+    end
+
+    it "has an matrix index" do
+      expect(@binary_matrix.bmi).to be_a_kind_of(MatrixIndex)
+    end
+
   end  
 
 
