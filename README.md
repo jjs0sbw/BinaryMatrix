@@ -1,5 +1,6 @@
 # BinaryMatrix
 [![Build Status](https://travis-ci.org/jjs0sbw/BinaryMatrix.svg?branch=master)](https://travis-ci.org/jjs0sbw/BinaryMatrix)
+
 An implementation of a binary matrix with Boolean operators.  This program is used to perform 
 Warfield Augumented Boolean Logic (WABL) operations.  WABL operations are a primary component
 system structural modeling.  More information is available at: 
