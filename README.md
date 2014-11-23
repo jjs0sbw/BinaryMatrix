@@ -5,10 +5,11 @@ An implementation of a binary matrix with Boolean operators.  This program is us
 Warfield Augumented Boolean Logic (WABL) operations.  WABL operations are a primary component
 system structural modeling.  More information is available at: 
 
-http://systemsconcept.org/
+Systems Concepts web site:  http://systemsconcept.org/
 
-https://github.com/jjs0sbw/bsmp
-https://github.com/jjs0sbw/smp
+Github:  https://github.com/jjs0sbw/bsmp
+
+Github:  https://github.com/jjs0sbw/smp
 
 ## Installation
 
