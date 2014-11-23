@@ -11,5 +11,16 @@ describe BinaryMatrix do
     it "takes one parameter and returns a BinaryMatrix object" do
       expect(@binary_matrix).to be_a_kind_of(BinaryMatrix)
     end
+
+    it "has a size of ten (10)" do
+      expect(@binary_matrix.size).to be == 10
+    end
+
+    it "has ten (10) rows in the matrix" do
+      expect(@binary_matrix.number_of_rows).to be == 10
+    end
+
   end  
+
+
 end
