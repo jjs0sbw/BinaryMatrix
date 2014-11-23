@@ -24,6 +24,10 @@ describe BinaryMatrix do
       expect(@binary_matrix.number_of_columns).to be == 10
     end
 
+    it "has a two dimensional ten (10) by ten (10) array" do
+      expect(@binary_matrix.bm).to be_a_kind_of(Array)
+    end
+
   end  
 
 
