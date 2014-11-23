@@ -37,44 +37,46 @@ describe BinaryMatrix do
     end
   end  
 
-describe "#add" do
-    it "will add up all the values in a matrix" do
-    temp_matrix = Array.new(4) { Array.new(4, 1)}
-    expect(@binary_matrix.add(temp_matrix)).to be == 16
-  end
-end
-
-describe "#enter_cell_content" do
-
-  it "will enter a one (1) into a matrix cell" do
-    @binary_matrix.enter_cell_content(2, 5)
-    expect(@binary_matrix.add).to be == 1
+  describe "#add" do
+      it "will add up all the values in a matrix" do
+      temp_matrix = Array.new(4) { Array.new(4, 1)}
+      expect(@binary_matrix.add(temp_matrix)).to be == 16
+    end
   end
 
-  it "will enter a zero into the cell if the index numbers are the same" do
-     @binary_matrix.enter_cell_content(2, 2)
-    expect(@binary_matrix.add).to be == 0
+  describe "#enter_cell_content" do
+
+    it "will enter a one (1) into a matrix cell" do
+      @binary_matrix.enter_cell_content(2, 5)
+      expect(@binary_matrix.add).to be == 1
+    end
+
+    it "will enter a zero into the cell if the index numbers are the same" do
+      @binary_matrix.enter_cell_content(2, 2)
+      expect(@binary_matrix.add).to be == 0
+    end
+
+  end  
+
+  describe "#transpose" do
+    it "will transpose the matrix contents" do
+      temp_matrix = Array.new(5) { Array.new(5, 0) }
+      @binary_matrix.enter_cell_content(1, 2)
+      @binary_matrix.enter_cell_content(3, 1)
+      t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
+      expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
+    end
+  end  
+
+  describe "#boolean_add" do
+    it "will add cell contents from two same size matrices" do
+      temp_matrix_1 = Array.new(10) { Array.new(10, 1) }
+      temp_matrix_2 = Array.new(10) { Array.new(10, 2) }
+      temp_matrix_out = Array.new(10) { Array.new(10, 0) }
+      temp_matrix_answer = Array.new(10) { Array.new(10, 3) }
+      temp_matrix_out = @binary_matrix.boolean_add( temp_matrix_1, temp_matrix_2)
+      expect(temp_matrix_out).to eq temp_matrix_answer
+    end
   end
-
-end  
-
-describe "#transpose" do
-  it "will transpose the matrix contents" do
-    temp_matrix = Array.new(5) { Array.new(5, 0) }
-    @binary_matrix.enter_cell_content(1, 2)
-    @binary_matrix.enter_cell_content(3, 1)
-    t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
-    expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
-  end
-
-end  
-
-
-
-
-
-
-
-
 
 end
