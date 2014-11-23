@@ -46,9 +46,14 @@ end
 
 describe "#add_cell_content" do
 
-  it "will and a one (1) into a matrix cell" do
+  it "will add a one (1) into a matrix cell" do
     @binary_matrix.add_cell_content(2, 5)
     expect(@binary_matrix.add).to be == 1
+  end
+
+  it "will add a zero into the cell if the index numbers are the same" do
+     @binary_matrix.add_cell_content(2, 2)
+    expect(@binary_matrix.add).to be == 0
   end
 
 end  
