@@ -18,5 +18,13 @@ class BinaryMatrix
     sum
   end
 
+  def add_cell_content(index_1, index_2, number = 1, matrix = bm)
+    if index_1 == index_2
+      number = 0
+    end
+    ti_1 = @bmi.mi.index([index_1])
+    ti_2 = @bmi.mi.index([index_2])
+    matrix[ti_1][ti_2] = number
+  end
 
 end

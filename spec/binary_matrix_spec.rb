@@ -35,8 +35,30 @@ describe BinaryMatrix do
     it "has an matrix index" do
       expect(@binary_matrix.bmi).to be_a_kind_of(MatrixIndex)
     end
-
   end  
+
+describe "#add" do
+    it "will add up all the values in a matrix" do
+    temp_matrix = Array.new(4) { Array.new(4, 1)}
+    expect(@binary_matrix.add(temp_matrix)).to be == 16
+  end
+end
+
+describe "#add_cell_content" do
+
+  it "will and a one (1) into a matrix cell" do
+    @binary_matrix.add_cell_content(2, 5)
+    expect(@binary_matrix.add).to be == 1
+  end
+
+end  
+
+
+
+
+
+
+
 
 
 end
