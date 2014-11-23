@@ -20,6 +20,10 @@ describe BinaryMatrix do
       expect(@binary_matrix.number_of_rows).to be == 10
     end
 
+    it "has ten (10) columns in the matrix" do
+      expect(@binary_matrix.number_of_columns).to be == 10
+    end
+
   end  
 
 
