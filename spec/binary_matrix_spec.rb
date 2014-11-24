@@ -75,9 +75,33 @@ describe BinaryMatrix do
       temp_matrix_out = Array.new(10) { Array.new(10, 0) }
       temp_matrix_answer = Array.new(10) { Array.new(10, 1) }
       temp_matrix_out = @binary_matrix.boolean_add(temp_matrix_1, temp_matrix_2)
-      #need to change to 1's 
       expect(temp_matrix_out).to eq temp_matrix_answer
     end
   end
+
+  describe "#boolean_multiply" do
+    it "will multipley two square matrices together and return a Boolean result" do
+      temp_matrix_1 = Array.new(10) { Array.new(10, 0) }
+      temp_matrix_2 = Array.new(10) { Array.new(10, 0) }
+      temp_matrix_answer = Array.new(10) { Array.new(10, 0) }
+      expect(temp_matrix_out).to eq temp_matrix_answer
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
