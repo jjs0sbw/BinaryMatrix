@@ -74,7 +74,8 @@ describe BinaryMatrix do
       temp_matrix_2 = Array.new(10) { Array.new(10, 2) }
       temp_matrix_out = Array.new(10) { Array.new(10, 0) }
       temp_matrix_answer = Array.new(10) { Array.new(10, 3) }
-      temp_matrix_out = @binary_matrix.boolean_add( temp_matrix_1, temp_matrix_2)
+      temp_matrix_out = @binary_matrix.boolean_add(temp_matrix_1, temp_matrix_2)
+      #need to change to 1's 
       expect(temp_matrix_out).to eq temp_matrix_answer
     end
   end

@@ -31,6 +31,20 @@ class BinaryMatrix
     new_matrix = @bm.dup
     t_nm = new_matrix.transpose
     t_nm.dup
-  end   
+  end  
+
+  def boolean_add(matrix_one, matrix_two)
+    t_matrix_one = matrix_one.dup
+    t_matrix_two = matrix_two.dup
+    #check for same size square matices
+    size = t_matrix_two.length  
+    t_matrix_out = Array.new(size) { Array.new(size, 0) }
+    (0..(size-1)).map do | x|
+      (0..(size-1)).map do |y|
+        t_matrix_out[x][y] = (t_matrix_one[x][y] + t_matrix_two[x][y])
+      end
+    end
+      
+  end
 
 end
