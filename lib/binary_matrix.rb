@@ -1,7 +1,9 @@
 require "#{File.dirname(__FILE__)}/binary_matrix/version"
 require "#{File.dirname(__FILE__)}/matrix_index"
+require "#{File.dirname(__FILE__)}/binary_matrix_utilities"
 
 class BinaryMatrix
+  include Utilities
   attr_accessor :size, :number_of_rows, :number_of_columns, :bm, :bmi
 
   def initialize size
@@ -37,14 +39,14 @@ class BinaryMatrix
     t_matrix_one = matrix_one.dup
     t_matrix_two = matrix_two.dup
     #check for same size square matices
-    size = t_matrix_two.length  
+    size = t_matrix_two[0].length  
     t_matrix_out = Array.new(size) { Array.new(size, 0) }
     (0..(size-1)).map do | x|
       (0..(size-1)).map do |y|
         t_matrix_out[x][y] = (t_matrix_one[x][y] + t_matrix_two[x][y])
       end
-    end
-      
+    end 
+    boolean_map(t_matrix_out)
   end
 
 end
