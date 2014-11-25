@@ -97,7 +97,12 @@ describe BinaryMatrix do
     end
   end
 
-
+  describe "#compress" do
+    it "will compress two rows and columns into one" do
+      temp_matrix_answer = Array.new(9) { Array.new(9, 0) }
+      expect(@binary_matrix.compress(2, 6)).to eq temp_matrix_answer
+    end
+  end
 
 
 
