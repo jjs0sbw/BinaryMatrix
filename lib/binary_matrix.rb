@@ -30,7 +30,7 @@ class BinaryMatrix
   end
 
   def transpose(matrix = bm)
-    new_matrix = @bm.dup
+    new_matrix = matrix.dup
     t_nm = new_matrix.transpose
     t_nm.dup
   end  
@@ -39,14 +39,29 @@ class BinaryMatrix
     t_matrix_one = matrix_one.dup
     t_matrix_two = matrix_two.dup
     #check for same size square matices
-    size = t_matrix_two[0].length  
+    size = t_matrix_two[0].length 
+    sz = size - 1 
     t_matrix_out = Array.new(size) { Array.new(size, 0) }
-    (0..(size-1)).map do | x|
-      (0..(size-1)).map do |y|
+    (0..sz).map do | x|
+      (0..sz).map do |y|
         t_matrix_out[x][y] = (t_matrix_one[x][y] + t_matrix_two[x][y])
       end
     end 
     boolean_map(t_matrix_out)
+    t_matrix_out
+  end
+
+  def boolean_multiply(matrix_one, matrix_two) #includes id matrix
+    size = matrix_one[0].length
+    sz = size - 1
+    id_1 = id_matrix(size).dup
+    id_2 = id_matrix(size).dup
+    m_1 = boolean_add(id_1, matrix_one.dup)
+    m_2 = boolean_add(id_2, matrix_two.dup)
+    m_2_t = m_2.transpose
+    b_m_out = (0..sz).map { |j| (0..sz).map { |i| m_1[j].zip(m_2_t[i]).map { |x, y| x * y }.inject(:+) } }
+    boolean_map(b_m_out)
+    b_m_out
   end
 
 end

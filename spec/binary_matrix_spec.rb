@@ -2,7 +2,6 @@ require File.expand_path("../../lib/binary_matrix.rb", __FILE__)
 require "#{File.dirname(__FILE__)}/spec_helper"
 
 describe BinaryMatrix do 
-  
   before :each do
     @binary_matrix = BinaryMatrix.new 10
   end
@@ -80,10 +79,13 @@ describe BinaryMatrix do
   end
 
   describe "#boolean_multiply" do
-    it "will multipley two square matrices together and return a Boolean result" do
+    it "will multipley two square matrices together and return a Boolean matrix" do
       temp_matrix_1 = Array.new(10) { Array.new(10, 0) }
       temp_matrix_2 = Array.new(10) { Array.new(10, 0) }
-      temp_matrix_answer = Array.new(10) { Array.new(10, 0) }
+      temp_matrix_a1 = Array.new(10) { Array.new(10, 0) }
+      temp_matrix_a2 = @binary_matrix.id_matrix(10)
+      temp_matrix_answer = @binary_matrix.boolean_add(temp_matrix_a1, temp_matrix_a2)
+      temp_matrix_out = @binary_matrix.boolean_multiply(temp_matrix_1, temp_matrix_2)
       expect(temp_matrix_out).to eq temp_matrix_answer
     end
   end
