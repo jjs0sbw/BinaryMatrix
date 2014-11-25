@@ -92,8 +92,7 @@ describe BinaryMatrix do
 
   describe "#expand" do
     it "will expand the matrix by one row and column" do
-      temp_matrix_answer = Array.new(10) { Array.new(10, 0) }
-      temp_matrix_1 = Array.new(9) { Array.new(9, 0) }
+      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
       expect(@binary_matrix.expand).to eq temp_matrix_answer
     end
   end

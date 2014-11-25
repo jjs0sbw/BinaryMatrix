@@ -36,19 +36,19 @@ class BinaryMatrix
   end  
 
   def boolean_add(matrix_one, matrix_two)
-    t_matrix_one = matrix_one.dup
-    t_matrix_two = matrix_two.dup
+    temp_matrix_one = matrix_one.dup
+    temp_matrix_two = matrix_two.dup
     #check for same size square matices
-    size = t_matrix_two[0].length 
+    size = temp_matrix_two[0].length 
     sz = size - 1 
-    t_matrix_out = Array.new(size) { Array.new(size, 0) }
+    temp_matrix_out = Array.new(size) { Array.new(size, 0) }
     (0..sz).map do | x|
       (0..sz).map do |y|
-        t_matrix_out[x][y] = (t_matrix_one[x][y] + t_matrix_two[x][y])
+        temp_matrix_out[x][y] = (temp_matrix_one[x][y] + temp_matrix_two[x][y])
       end
     end 
-    boolean_map(t_matrix_out)
-    t_matrix_out
+    boolean_map(temp_matrix_out)
+    temp_matrix_out
   end
 
   def boolean_multiply(matrix_one, matrix_two) #includes id matrix
@@ -64,4 +64,20 @@ class BinaryMatrix
     b_m_out
   end
 
+  def expand
+    new_size = size + 1
+    new_row = Array.new(@size, 0)
+    new_matrix = bm.dup
+    new_matrix << new_row
+    new_column = Array.new(new_size, 0)
+    new_matrix_t = new_matrix.transpose.dup
+    new_matrix_t << new_column
+    bm = new_matrix_t.transpose.dup
+  end
+
 end
+
+
+
+
+
