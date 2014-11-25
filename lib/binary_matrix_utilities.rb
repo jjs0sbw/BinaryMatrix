@@ -23,5 +23,18 @@ module Utilities
     (0..size-1).map { |x| id[x][x] = 1 }
     id
   end  
+
+  def compress_array(array_1, array_2, index_2)
+    sz = array_1.length - 1
+    a_1 = array_1.dup
+    a_2 = array_2.dup
+    a_out = []
+    (0..sz).each { |x| a_out[x] = a_1[x] + a_2[x] }
+    (0..sz).each { |x| a_out[x] > 1 ? a_out[x] = 1 : a_out[x] }
+    a_out[index_2] = 0
+    a_out
+  end
+
+
 end
 

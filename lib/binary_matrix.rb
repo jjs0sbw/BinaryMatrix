@@ -75,6 +75,23 @@ class BinaryMatrix
     bm = new_matrix_t.transpose.dup
   end
 
+  def compress(index_1, index_2)
+    new_matrix = bm.dup
+    a_1 = new_matrix[index_1]
+    a_2 = new_matrix[index_2]
+    a_c_1_2 = compress_array(a_1, a_2, index_2)
+    new_matrix[index_1] = a_c_1_2
+    new_matrix.delete_at(index_2)
+    new_matrix_t = new_matrix.transpose.dup
+    a_1_t = new_matrix_t[index_1]
+    a_2_t = new_matrix_t[index_2]
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, index_2)
+    new_matrix_t[index_1] = a_c_1_2_t
+    new_matrix_t.delete_at(index_2)
+    bm = new_matrix_t.transpose
+  end
+
+
 end
 
 
