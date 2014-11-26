@@ -90,9 +90,16 @@ describe BinaryMatrix do
   end
 
   describe "#expand_end" do
-    it "will expand the matrix by one row and column" do
+    it "will expand the matrix by one row and column at the end" do
       temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
       expect(@binary_matrix.expand_end).to eq temp_matrix_answer
+    end
+  end
+
+  describe "#expand" do
+    it "will expand the matrix inserting a row and column at the given index " do
+      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
+      expect(binary_matrix.expand(4)).to eq temp_matrix_answer
     end
   end
 
@@ -102,16 +109,6 @@ describe BinaryMatrix do
       expect(@binary_matrix.compress(2, 6)).to eq temp_matrix_answer
     end
   end
-
-
-
-
-
-
-
-
-
-
 
 
 

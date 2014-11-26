@@ -34,7 +34,7 @@ module Utilities
 
   def expand_end
     new_size = size + 1
-    new_row = Array.new(@size, 0)
+    new_row = Array.new(size, 0)
     new_matrix = bm.dup
     new_matrix << new_row
     new_column = Array.new(new_size, 0)
