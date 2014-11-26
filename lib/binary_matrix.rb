@@ -61,16 +61,16 @@ class BinaryMatrix
     b_m_out
   end
 
-  def expand
-    new_size = size + 1
-    new_row = Array.new(@size, 0)
-    new_matrix = bm.dup
-    new_matrix << new_row
-    new_column = Array.new(new_size, 0)
-    new_matrix_t = new_matrix.transpose.dup
-    new_matrix_t << new_column
-    new_matrix_t.transpose.dup
-  end
+  # def expand
+  #   new_size = size + 1
+  #   new_row = Array.new(@size, 0)
+  #   new_matrix = bm.dup
+  #   new_matrix << new_row
+  #   new_column = Array.new(new_size, 0)
+  #   new_matrix_t = new_matrix.transpose.dup
+  #   new_matrix_t << new_column
+  #   new_matrix_t.transpose.dup
+  # end
 
   def compress(index_1, index_2)
     new_matrix = bm.dup
