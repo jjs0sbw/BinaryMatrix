@@ -5,6 +5,6 @@
 class MatrixIndex
   attr_accessor :mi
   def initialize(size)
-    @mi = Array.new(size) { |i| Array.new(1, i + 1 ) }
+    @mi = Array.new(size) { |i| Array.new(1, i + 1) }
   end
 end
