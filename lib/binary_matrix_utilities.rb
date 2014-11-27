@@ -31,15 +31,35 @@ module Utilities
     a_out[index_2] = 0
     a_out
   end
-
-  def expand_end
-    new_size = size + 1
-    new_row = Array.new(size, 0)
-    new_matrix = bm.dup
+  
+  #need to add matrix as an argument
+  def expand_end(matrix)
+    new_size = matrix[0].length
+    new_row = Array.new(new_size, 0)
+    new_matrix = matrix.dup
     new_matrix << new_row
-    new_column = Array.new(new_size, 0)
+    new_column = Array.new(new_size + 1, 0)
     new_matrix_t = new_matrix.transpose.dup
     new_matrix_t << new_column
-    new_matrix_t.transpose.dup
+    matrix_out = new_matrix_t.transpose.dup
+    matrix_out
   end
+  
+  def swap_row_column(matrix, index_1, index_2)
+    tm = matrix.dup
+    i1 = index_1-1
+    i2 = index_2-1
+    ta1 = tm[i1]
+    ta2 = tm[i2]
+    tm[i1] = ta2
+    tm[i2] = ta1
+    tmt = tm.transpose
+    tat1 = tmt[i1]
+    tat2 = tmt[i2]
+    tmt[i1] = tat2
+    tmt[i2] = tat1
+    tout = tmt.transpose.dup 
+    tout
+  end 
+
 end
