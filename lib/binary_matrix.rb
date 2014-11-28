@@ -1,9 +1,12 @@
 require "#{File.dirname(__FILE__)}/binary_matrix/version"
 require "#{File.dirname(__FILE__)}/matrix_index"
 require "#{File.dirname(__FILE__)}/binary_matrix_utilities"
+require "#{File.dirname(__FILE__)}/log_and_print"
+
 # Binary matrix class for Warfield Augumented Boolean Logic
 class BinaryMatrix
   include Utilities
+  include LogAndPrint
   attr_accessor :size, :number_of_rows, :number_of_columns, :bm, :bmi
 
   def initialize(size)
