@@ -4,6 +4,11 @@
 #
 # Copyright GPL 3 -- Joseph J. Simpson -- 2014 11-27-2014
 
+#require 'logger'
+
+#logger = Logger.new('log_one.txt')
+#logger.info 'This is a info logging file'
+
 module LogAndPrint
   def  square_print_with_comment(comment, matrix = bm)
     puts '  '
