@@ -1,7 +1,10 @@
 require File.expand_path("../../lib/binary_matrix.rb", __FILE__)
 require "#{File.dirname(__FILE__)}/spec_helper"
+require 'logger'
 
 describe BinaryMatrix do 
+  logger = Logger.new('log_one.txt')
+  logger.info "\nThis is a info logging file\n"
   before :each do
     @binary_matrix = BinaryMatrix.new(10)
   end
@@ -110,8 +113,52 @@ describe BinaryMatrix do
     end
   end
 
+  describe "#square_print_with_comment" do
+    it "will print the matrix in a square format with a commnet" do
+      expect { print "test one" }.to output("test one").to_stdout
+    end
+    it "will print the matrix in a square format with a commnet" do
+      expect { @binary_matrix.square_print_with_comment("testOne", \
+        @binary_matrix.bm)}.to output("  \ntestOne
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  \n").to_stdout
+    end
 
+    describe "#write_log" do
+      it "will log the matrix in a square format with a comment to a local file" do
+        puts "\n"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+      end
+    end
 
-
-
+    describe "#enter_cell_content" do
+      it "will add a one to the matrix cell" do
+        @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
+        puts "Enter 2 is north of 1\n"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        logger.info "\nEnter 2 is north of 1\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        end
+      end
+  end  
 end
+
+
+
+
+
+
+
+
+
+
