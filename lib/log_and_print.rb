@@ -11,4 +11,8 @@ module LogAndPrint
     puts matrix.to_a.map(&:inspect)
     puts '  '
   end
+
+  def write_log(log_name, data)
+    File.open(log_name, 'a+') { |f| f.write(data)  }
+  end  
 end
