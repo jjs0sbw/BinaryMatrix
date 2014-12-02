@@ -62,4 +62,15 @@ module Utilities
     tout
   end 
 
+  def swap_index(matrix, index_1, index_2)
+    tm = matrix.dup
+    i1 = index_1-1
+    i2 = index_2-1
+    ta1 = tm[i1]
+    ta2 = tm[i2]
+    tm[i1] = ta2
+    tm[i2] = ta1 
+    tm
+  end  
+
 end

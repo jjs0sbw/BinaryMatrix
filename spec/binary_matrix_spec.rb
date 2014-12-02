@@ -135,15 +135,17 @@ describe BinaryMatrix do
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   \n").to_stdout
     end
-
+  end
     describe "#write_log" do
       it "will log the matrix in a square format with a comment to a local file" do
         puts "\n Binary Matrix .. \n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
-        puts @binary_matrix.bmi.mi.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
         logger.info "\n Enter base binary matrix..\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        "#{@binary_matrix.bmi.mi.to_a{ logger.info inspect } }"
       end
     end
 
@@ -152,24 +154,49 @@ describe BinaryMatrix do
         @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
         puts "Enter 2 is north of 1\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
         logger.info "\nEnter 2 is north of 1\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
-        logger.info "\nBinary Matrix Index\n"
-        "#{@binary_matrix.bmi.mi.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end
-    end  
-
+  
     describe "#swap_row_and_column" do
       it "will swap rows and columns to create proper alignment" do
         @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 2)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 2)
         puts "Swap rows and columns 1 and 2\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
         logger.info "\nSwap rows and columns 1 and 2\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end  
+
+      describe "#enter_cell_content" do
+      it "will add a one to the matrix cell" do
+        @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
+        @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 2)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 2)
+        @binary_matrix.enter_cell_content(3, 1, 1, @binary_matrix.bm)
+        puts "Enter 1 is north of 3\n"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 1 is north of 3\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end  
+
+      
 end  
 
 
