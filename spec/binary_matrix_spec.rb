@@ -4,6 +4,9 @@ require 'logger'
 
 describe BinaryMatrix do 
   logger = Logger.new('log_one.txt')
+  logger.formatter = proc do |severity, datetime, progname, msg|
+    "Binary Matrix: #{msg}\n"
+  end
   logger.info "\nThis is a info logging file\n"
   before :each do
     @binary_matrix = BinaryMatrix.new(10)
@@ -135,8 +138,11 @@ describe BinaryMatrix do
 
     describe "#write_log" do
       it "will log the matrix in a square format with a comment to a local file" do
-        puts "\n"
+        puts "\n Binary Matrix .. \n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        logger.info "\n Enter base binary matrix..\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
       end
     end
@@ -148,10 +154,24 @@ describe BinaryMatrix do
         puts @binary_matrix.bm.to_a.map(&:inspect)
         logger.info "\nEnter 2 is north of 1\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\nBinary Matrix Index\n"
+        "#{@binary_matrix.bmi.mi.to_a.each{ |r| logger.info r.inspect } }"
         end
       end
-  end  
-end
+    end  
+
+    describe "#swap_row_and_column" do
+      it "will swap rows and columns to create proper alignment" do
+        @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
+        @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 2)
+        puts "Swap rows and columns 1 and 2\n"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        logger.info "\nSwap rows and columns 1 and 2\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        end
+      end  
+end  
+
 
 
 
