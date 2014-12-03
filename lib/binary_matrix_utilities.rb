@@ -86,5 +86,11 @@ module Utilities
     matrix_out = check_matrix_2
   end  
 
+  def subtract_id_matrix(matrix)
+    sz = (matrix[0].length - 1)
+    (0..sz).map { |x| matrix[x][x] = 0 }
+    matrix
+  end  
+
 
 end

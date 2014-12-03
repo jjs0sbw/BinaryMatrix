@@ -203,6 +203,7 @@ describe BinaryMatrix do
         @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 2)
         @binary_matrix.enter_cell_content(3, 1, 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
         #need to subtract id matrix here
         puts "Infer information\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
