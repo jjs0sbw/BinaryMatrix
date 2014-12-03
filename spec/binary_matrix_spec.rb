@@ -247,7 +247,6 @@ describe BinaryMatrix do
            @binary_matrix.enter_cell_content(2, 4, 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 2, 4)
            @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 2, 4)
-           #need to fix swap_row_and_column to add index look up
            puts "Swap row and column 2 and 4\n"
            puts @binary_matrix.bm.to_a.map(&:inspect)
            puts "Matrix Index .. \n"

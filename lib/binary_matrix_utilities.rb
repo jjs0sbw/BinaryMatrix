@@ -47,8 +47,8 @@ module Utilities
   
   def swap_row_column(matrix, index_1, index_2)
     tm = matrix.dup
-    i1 = index_1-1
-    i2 = index_2-1
+    i1 = bmi.mi.index([index_1])
+    i2 = bmi.mi.index([index_2])
     ta1 = tm[i1]
     ta2 = tm[i2]
     tm[i1] = ta2
@@ -64,8 +64,8 @@ module Utilities
 
   def swap_index(matrix, index_1, index_2)
     tm = matrix.dup
-    i1 = index_1-1
-    i2 = index_2-1
+    i1 = bmi.mi.index([index_1])
+    i2 = bmi.mi.index([index_2])
     ta1 = tm[i1]
     ta2 = tm[i2]
     tm[i1] = ta2
