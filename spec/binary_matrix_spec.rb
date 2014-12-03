@@ -196,6 +196,25 @@ describe BinaryMatrix do
         end
       end  
 
+      describe "#reachability_matrix" do
+      it "will create reachability matrix and infer information" do
+        @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
+        @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 2)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 2)
+        @binary_matrix.enter_cell_content(3, 1, 1, @binary_matrix.bm)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
+        #need to subtract id matrix here
+        puts "Infer information\n"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nInfer information\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end  
+
       
 end  
 

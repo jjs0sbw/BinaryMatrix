@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/binary_matrix/version"
+b =require "#{File.dirname(__FILE__)}/binary_matrix/version"
 require "#{File.dirname(__FILE__)}/matrix_index"
 require "#{File.dirname(__FILE__)}/binary_matrix_utilities"
 require "#{File.dirname(__FILE__)}/log_and_print"
@@ -44,6 +44,20 @@ class BinaryMatrix
     (0..sz).map do | x|
       (0..sz).map do |y|
         temp_matrix_out[x][y] = (temp_matrix_one[x][y] + temp_matrix_two[x][y])
+      end
+    end
+    boolean_map(temp_matrix_out)
+    temp_matrix_out
+  end
+
+  def boolean_subtract(matrix_one, matrix_two)
+    temp_matrix_one = matrix_one.dup
+    temp_matrix_two = matrix_two.dup
+    sz = (temp_matrix_two[0].length - 1)
+    temp_matrix_out = Array.new(size) { Array.new(size, 0) }
+    (0..sz).map do | x|
+      (0..sz).map do |y|
+        temp_matrix_out[x][y] = (temp_matrix_one[x][y] - temp_matrix_two[x][y])
       end
     end
     boolean_map(temp_matrix_out)

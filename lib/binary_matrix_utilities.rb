@@ -73,4 +73,18 @@ module Utilities
     tm
   end  
 
+  def reachability_matrix(matrix)
+    tmp_matrix = matrix.dup
+    guard_num = 0
+    check_matrix_1 = boolean_multiply(tmp_matrix, tmp_matrix)
+    check_matrix_2 = boolean_multiply(check_matrix_1, check_matrix_1)
+    until boolean_subtract(check_matrix_1, check_matrix_2) == 0 || guard_num > 10
+      guard_num = guard_num + 1
+      check_matrix_1 = boolean_multiply(check_matrix_2, check_matrix_2)
+      check_matrix_2 = boolean_multiply(check_matrix_1, check_matrix_1)
+    end
+    matrix_out = check_matrix_2
+  end  
+
+
 end
