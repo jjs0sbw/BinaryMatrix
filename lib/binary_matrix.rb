@@ -40,7 +40,7 @@ class BinaryMatrix
     temp_matrix_one = matrix_one.dup
     temp_matrix_two = matrix_two.dup
     sz = (temp_matrix_two[0].length - 1)
-    temp_matrix_out = Array.new(size) { Array.new(size, 0) }
+    temp_matrix_out = Array.new(sz + 1) { Array.new(sz + 1, 0) }
     (0..sz).map do | x|
       (0..sz).map do |y|
         temp_matrix_out[x][y] = (temp_matrix_one[x][y] + temp_matrix_two[x][y])

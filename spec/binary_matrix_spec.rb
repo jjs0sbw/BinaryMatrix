@@ -9,26 +9,26 @@ describe BinaryMatrix do
   end
   logger.info "\nThis is a info logging file\n"
   before :each do
-    @binary_matrix = BinaryMatrix.new(10)
+    @binary_matrix = BinaryMatrix.new(12)
   end
   describe "#new" do
     it "takes one parameter and returns a BinaryMatrix object" do
       expect(@binary_matrix).to be_a_kind_of(BinaryMatrix)
     end
 
-    it "has a size of ten (10)" do
-      expect(@binary_matrix.size).to be == 10
+    it "has a size of tweleve (12)" do
+      expect(@binary_matrix.size).to be == 12
     end
 
-    it "has ten (10) rows in the matrix" do
-      expect(@binary_matrix.number_of_rows).to be == 10
+    it "has tweleve (12) rows in the matrix" do
+      expect(@binary_matrix.number_of_rows).to be == 12
     end
 
-    it "has ten (10) columns in the matrix" do
-      expect(@binary_matrix.number_of_columns).to be == 10
+    it "has tweleve (12) columns in the matrix" do
+      expect(@binary_matrix.number_of_columns).to be == 12
     end
 
-    it "has a two dimensional ten (10) by ten (10) array" do
+    it "has a two dimensional tweleve (12) by tweleve (12) array" do
       expect(@binary_matrix.bm).to be_a_kind_of(Array)
     end
 
@@ -97,21 +97,21 @@ describe BinaryMatrix do
 
   describe "#expand_end" do
     it "will expand the matrix by one row and column at the end" do
-      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
+      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
       expect(@binary_matrix.expand_end(@binary_matrix.bm)).to eq temp_matrix_answer
     end
   end
 
   describe "#expand" do
     it "will expand the matrix inserting a row and column at the given index " do
-      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
+      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
       expect(@binary_matrix.expand(@binary_matrix.bm, 4)).to eq temp_matrix_answer
     end
   end
 
   describe "#compress" do
     it "will compress two rows and columns into one" do
-      temp_matrix_answer = Array.new(9) { Array.new(9, 0) }
+      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
       expect(@binary_matrix.compress(2, 6)).to eq temp_matrix_answer
     end
   end
@@ -123,16 +123,18 @@ describe BinaryMatrix do
     it "will print the matrix in a square format with a commnet" do
       expect { @binary_matrix.square_print_with_comment("testOne", \
         @binary_matrix.bm)}.to output("  \ntestOne
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   \n").to_stdout
     end
   end
