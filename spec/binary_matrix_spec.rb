@@ -140,11 +140,11 @@ describe BinaryMatrix do
   end
     describe "#write_log" do
       it "will log the matrix in a square format with a comment to a local file" do
-        puts "\n Binary Matrix .. \n"
+        puts "\n Binary Matrix .. Strict Ordering\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
         p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\n Enter base binary matrix..\n"
+        logger.info "\n Enter base binary matrix.. Strict ordering\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
         logger.info "\n\nMatrix Index"
         "#{@binary_matrix.bmi.mi.to_a{ logger.info inspect } }"
