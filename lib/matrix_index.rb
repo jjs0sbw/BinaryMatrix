@@ -8,11 +8,11 @@ class MatrixIndex
     @mi = Array.new(size) { |i| Array.new(1, i + 1) }
   end
 
-  def compress(index_1, index_2)
+  def compress_index(index_1, index_2)
     temp_mi = mi.dup
     i1 = temp_mi[index_1 - 1]
     i2 = temp_mi[index_2 - 1]
-    p temp_mi[0].push(i2[0])
+    temp_mi[i1[0]-1].push(i2[0])
     temp_mi.delete_at(i2[0] - 1)
     temp_mi
   end  

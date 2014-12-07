@@ -24,17 +24,22 @@ class BinaryMatrix
   end
 
   def enter_cell_content(index_1, index_2, number = 1, matrix = bm)
+    #need to add array to index
     number = 0 if index_1 == index_2
-    ti_1 = bmi.mi.index([index_1])
-    ti_2 = bmi.mi.index([index_2])
-    matrix[ti_1][ti_2] = number
+    #ti_1 = bmi.mi.index(index_1)
+    #ti_2 = bmi.mi.index(index_2)
+    #ti_1 = bmi.mi[index_1]
+    #ti_2 = bmi.mi[index_2]
+    ti_1 = bmi.mi[index_1][0] # added [0]
+    ti_2 = bmi.mi[index_2][0]
+    matrix[ti_1[0]][ti_2[0]] = number
   end
 
-  def transpose(matrix = bm)
-    new_matrix = matrix.dup
-    t_nm = new_matrix.transpose
-    t_nm.dup
-  end
+  #def transpose(matrix = bm)
+  #  new_matrix = matrix.dup
+  #  t_nm = new_matrix.transpose
+  #  t_nm.dup
+  #end
 
   def boolean_add(matrix_one, matrix_two)
     temp_matrix_one = matrix_one.dup
@@ -86,18 +91,28 @@ class BinaryMatrix
   end
 
   def compress(index_1, index_2)
-    new_matrix = bm.dup
-    a_1 = new_matrix[index_1]
-    a_2 = new_matrix[index_2]
-    a_c_1_2 = compress_array(a_1, a_2, index_2)
-    new_matrix[index_1] = a_c_1_2
-    new_matrix.delete_at(index_2)
+    #need to add index lookup
+    #need to fix this logic
+    new_matrix = bm.dup # added .dup
+    i_1 = bmi.mi[index_1]
+    i_2 = bmi.mi[index_2]
+    a_1 = new_matrix[i_1[0]]
+    a_2 = new_matrix[i_2[0]]
+    #a_c_1_2 = compress_array(a_1, a_2, index_2)
+    a_c_1_2 = compress_array(a_1, a_2, i_2[0])
+    #new_matrix[index_1] = a_c_1_2
+    new_matrix[i_1[0]] = a_c_1_2
+    puts "line 1 below"
+    p new_matrix[i_1[0]]  # added print statement
+    new_matrix.delete_at(i_2[0])
     new_matrix_t = new_matrix.transpose.dup
-    a_1_t = new_matrix_t[index_1]
-    a_2_t = new_matrix_t[index_2]
-    a_c_1_2_t = compress_array(a_1_t, a_2_t, index_2)
-    new_matrix_t[index_1] = a_c_1_2_t
-    new_matrix_t.delete_at(index_2)
-    new_matrix_t.transpose
+    a_1_t = new_matrix_t[i_1[0]]
+    a_2_t = new_matrix_t[i_2[0]]
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2[0])
+    new_matrix_t[i_1[0]] = a_c_1_2_t
+    puts "line 2 below"
+    p new_matrix[i_1[0]]  # added print statement
+    new_matrix_t.delete_at(i_2[0])
+    bm = new_matrix_t.transpose.dup # added bm = and .dup
   end
 end

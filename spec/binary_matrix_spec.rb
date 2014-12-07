@@ -9,26 +9,26 @@ describe BinaryMatrix do
   end
   logger.info "\nThis is a info logging file\n"
   before :each do
-    @binary_matrix = BinaryMatrix.new(12)
+    @binary_matrix = BinaryMatrix.new(14)
   end
   describe "#new" do
     it "takes one parameter and returns a BinaryMatrix object" do
       expect(@binary_matrix).to be_a_kind_of(BinaryMatrix)
     end
 
-    it "has a size of tweleve (12)" do
-      expect(@binary_matrix.size).to be == 12
+    it "has a size of tweleve (14)" do
+      expect(@binary_matrix.size).to be == 14
     end
 
-    it "has tweleve (12) rows in the matrix" do
-      expect(@binary_matrix.number_of_rows).to be == 12
+    it "has tweleve (14) rows in the matrix" do
+      expect(@binary_matrix.number_of_rows).to be == 14
     end
 
-    it "has tweleve (12) columns in the matrix" do
-      expect(@binary_matrix.number_of_columns).to be == 12
+    it "has tweleve (14) columns in the matrix" do
+      expect(@binary_matrix.number_of_columns).to be == 14
     end
 
-    it "has a two dimensional tweleve (12) by tweleve (12) array" do
+    it "has a two dimensional tweleve (14) by tweleve (14) array" do
       expect(@binary_matrix.bm).to be_a_kind_of(Array)
     end
 
@@ -62,15 +62,15 @@ describe BinaryMatrix do
 
   end  
 
-  describe "#transpose" do
-    it "will transpose the matrix contents" do
-      temp_matrix = Array.new(5) { Array.new(5, 0) }
-      @binary_matrix.enter_cell_content(1, 2)
-      @binary_matrix.enter_cell_content(3, 1)
-      t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
-      expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
-    end
-  end  
+#describe "#transpose" do
+#    it "will transpose the matrix contents" do
+#      temp_matrix = Array.new(5) { Array.new(5, 0) }
+#      @binary_matrix.enter_cell_content(1, 2)
+#      @binary_matrix.enter_cell_content(3, 1)
+#      t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
+#      expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
+#    end
+#  end
 
   describe "#boolean_add" do
     it "will add cell contents from two same size matrices" do
@@ -97,21 +97,21 @@ describe BinaryMatrix do
 
   describe "#expand_end" do
     it "will expand the matrix by one row and column at the end" do
-      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
+      temp_matrix_answer = Array.new(15) { Array.new(15, 0) }
       expect(@binary_matrix.expand_end(@binary_matrix.bm)).to eq temp_matrix_answer
     end
   end
 
   describe "#expand" do
     it "will expand the matrix inserting a row and column at the given index " do
-      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
+      temp_matrix_answer = Array.new(15) { Array.new(15, 0) }
       expect(@binary_matrix.expand(@binary_matrix.bm, 4)).to eq temp_matrix_answer
     end
   end
 
   describe "#compress" do
     it "will compress two rows and columns into one" do
-      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
+      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
       expect(@binary_matrix.compress(2, 6)).to eq temp_matrix_answer
     end
   end
@@ -123,18 +123,20 @@ describe BinaryMatrix do
     it "will print the matrix in a square format with a commnet" do
       expect { @binary_matrix.square_print_with_comment("testOne", \
         @binary_matrix.bm)}.to output("  \ntestOne
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   \n").to_stdout
     end
   end
@@ -165,7 +167,7 @@ describe BinaryMatrix do
         end
       end
   
-    describe "#swap_row_and_column" do
+    describe "#swap_row_column" do
       it "will swap rows and columns to create proper alignment" do
         @binary_matrix.enter_cell_content(1, 2, 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 2)
@@ -1044,7 +1046,7 @@ describe BinaryMatrix do
            @binary_matrix.enter_cell_content(8, 1, 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
-            @binary_matrix.enter_cell_content(3, 9, 1, @binary_matrix.bm)
+           @binary_matrix.enter_cell_content(3, 9, 1, @binary_matrix.bm)
            puts "\nEnter 9 is north of 3"
            puts @binary_matrix.bm.to_a.map(&:inspect)
            puts "Matrix Index .. \n"

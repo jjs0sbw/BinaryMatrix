@@ -28,7 +28,7 @@ module Utilities
     a_out = []
     (0..sz).each { |x| a_out[x] = a_1[x] + a_2[x] }
     (0..sz).each { |x| a_out[x] > 1 ? a_out[x] = 1 : a_out[x] }
-    a_out[index_2] = 0
+    a_out[index_2[0]] = 0
     a_out
   end
   
@@ -47,29 +47,47 @@ module Utilities
   
   def swap_row_column(matrix, index_1, index_2)
     tm = matrix.dup
-    i1 = bmi.mi.index([index_1])
-    i2 = bmi.mi.index([index_2])
-    ta1 = tm[i1]
-    ta2 = tm[i2]
-    tm[i1] = ta2
-    tm[i2] = ta1
+    #i1 = bmi.mi.index([index_1])
+    #i2 = bmi.mi.index([index_2])
+    i1 = bmi.mi[index_1 - 1][0] # remove - 1
+    i2 = bmi.mi[index_2 - 1][0]  # remove - 1
+    puts "\n bmi start #{i1}\n"
+    p bmi.mi.to_a.map(&:inspect)  # insert print statement
+    puts "\n bmi finish \n"
+
+    ta1 = tm[i1 - 1] # add - 1
+    ta2 = tm[i2 - 1] # add - 1
+    puts "\n ta1 start #{i1}\n"
+    p ta1.to_a.map(&:inspect)  # insert print statement
+    puts "\n ta1 finish \n"
+
+    tm[i1 - 1] = ta2 # add - 1
+    tm[i2 - 1] = ta1 # add - 1
+    puts "\n tm start \n"
+    puts tm.to_a.map(&:inspect)  # insert print statement
+    puts "\n tm finish \n"
     tmt = tm.transpose
-    tat1 = tmt[i1]
-    tat2 = tmt[i2]
-    tmt[i1] = tat2
-    tmt[i2] = tat1
+    #need to work custom transpose method rename to m_transpose
+    #tmt = tm.transpose(tm)
+    tat1 = tmt[i1 - 1] # add - 1
+    tat2 = tmt[i2 - 1] # add - 1
+    tmt[i1 - 1] = tat2 # add - 1
+    tmt[i2 - 1] = tat1 # add - 1
     tout = tmt.transpose.dup 
     tout
   end 
 
   def swap_index(matrix, index_1, index_2)
+    #work this out ..
     tm = matrix.dup
-    i1 = bmi.mi.index([index_1])
-    i2 = bmi.mi.index([index_2])
-    ta1 = tm[i1]
-    ta2 = tm[i2]
-    tm[i1] = ta2
-    tm[i2] = ta1 
+    #i1 = bmi.mi.index([index_1])
+    #i2 = bmi.mi.index([index_2])
+    i1 = bmi.mi[index_1 - 1][0] # added - 1
+    i2 = bmi.mi[index_2 - 1][0] # added - 1
+    ta1 = tm[i1 - 1] # added - 1
+    ta2 = tm[i2 - 1] # added - 1
+    tm[i1 - 1] = ta2 # added - 1
+    tm[i2 - 1] = ta1 # added - 1
     tm
   end  
 
