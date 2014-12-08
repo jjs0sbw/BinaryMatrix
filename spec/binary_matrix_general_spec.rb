@@ -3,7 +3,7 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 require 'logger'
 
 describe BinaryMatrix do 
-  logger = Logger.new('log_one.txt')
+  logger = Logger.new('general_log_one.txt')
   logger.formatter = proc do |severity, datetime, progname, msg|
     "Binary Matrix: #{msg}\n"
   end
@@ -51,26 +51,16 @@ describe BinaryMatrix do
   describe "#enter_cell_content" do
 
     it "will enter a one (1) into a matrix cell" do
-      @binary_matrix.enter_cell_content(2, 5)
+      @binary_matrix.enter_cell_content([2], [5])
       expect(@binary_matrix.add).to be == 1
     end
 
     it "will enter a zero into the cell if the index numbers are the same" do
-      @binary_matrix.enter_cell_content(2, 2)
+      @binary_matrix.enter_cell_content([2], [2])
       expect(@binary_matrix.add).to be == 0
     end
 
   end  
-
-#describe "#transpose" do
-#    it "will transpose the matrix contents" do
-#      temp_matrix = Array.new(5) { Array.new(5, 0) }
-#      @binary_matrix.enter_cell_content(1, 2)
-#      @binary_matrix.enter_cell_content(3, 1)
-#      t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
-#      expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
-#    end
-#  end
 
   describe "#boolean_add" do
     it "will add cell contents from two same size matrices" do
@@ -157,10 +147,11 @@ describe BinaryMatrix do
     describe "#compress" do
       it "will compress two rows and columns into one" do
         @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         puts "Compress rows columns 1 and 10\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
-        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        #@binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         p @binary_matrix.bmi.mi.to_a.map(&:inspect)
         logger.info "\nCompress rows and columns 1 and 10\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
@@ -172,38 +163,66 @@ describe BinaryMatrix do
       describe "#enter_cell_content" do
       it "will enter a 1 into the selected matrix cell" do
         @binary_matrix.bm = @binary_matrix.compress(1, 10)
-        @binary_matrix.enter_cell_content(1, 8, 1, @binary_matrix.bm)
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm)
         puts "Enter 8 is north of 1\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
-        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        #@binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\nCompress rows and columns 1 and 10\n"
+        logger.info "\nEnter 8 is north of 1\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
         logger.info "\n\nMatrix Index"
         logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end
 
-      #swap 8 and 1 next ..
       describe "#swap_row_column" do
       it "will swap selected rows and columns to create proper alignment" do
         @binary_matrix.bm = @binary_matrix.compress(1, 10)
-        @binary_matrix.enter_cell_content(1, 8, 1, @binary_matrix.bm)
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
-        #@binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 8)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 8)
         puts "Swap rows and columns 1 and 8"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
-        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
-        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 8)
+        #@binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        #@binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 8)
         p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\nCompress rows and columns 1 and 10\n"
+        logger.info "\nSwap rows and columns 1 and 8\n"
         "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
         logger.info "\n\nMatrix Index"
         logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 into the selected matrix cell" do
+        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) #moved this up here
+        #p @binary_matrix.bmi.mi.index([1, [10]]) #added for test..
+        @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index(@binary_matrix.bmi.mi, 1, 8)
+        #p @binary_matrix.bmi.mi.length
+        @binary_matrix.enter_cell_content([12], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        puts "Enter 8 is north of 12"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        #@binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 8 is north of 12\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end
+          
+                                      
+                                      
+                                      
+      
 
 
 

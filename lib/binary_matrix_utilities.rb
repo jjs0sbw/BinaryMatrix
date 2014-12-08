@@ -60,7 +60,7 @@ module Utilities
     tmt[i1 - 1] = tat2 
     tmt[i2 - 1] = tat1 
     tout = tmt.transpose.dup 
-    tout
+    matrix = tout  #added matrix =
   end 
 
   def swap_index(matrix, index_1, index_2)
@@ -71,7 +71,7 @@ module Utilities
     ta2 = tm[i2 - 1] 
     tm[i1 - 1] = ta2 
     tm[i2 - 1] = ta1 
-    tm
+    matrix = tm.dup # added dup and matrix =
   end  
 
   def reachability_matrix(matrix)
