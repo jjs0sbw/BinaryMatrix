@@ -88,12 +88,15 @@ class BinaryMatrix
     #i_2 = bmi.mi[index_2]
     i_1 = matrix_index.index(index_1)
     i_2 = matrix_index.index(index_2)
+    p "Indexes are #{i_1}  and #{i_2}"
     #a_1 = new_matrix[i_1[0]]
     #a_2 = new_matrix[i_2[0]]
     a_1 = new_matrix[i_1]
     a_2 = new_matrix[i_2]
+    p "a_1 is #{a_1}"
+    p "a_2 is #{a_2}"
     #a_c_1_2 = compress_array(a_1, a_2, i_2[0])
-    a_c_1_2 = compress_array(a_1, a_2, i_2)
+    a_c_1_2 = compress_array(a_1, a_2, i_1) # change to i_1
     #new_matrix[i_1[0]] = a_c_1_2
     new_matrix[i_1] = a_c_1_2
     #new_matrix.delete_at(i_2[0])
@@ -104,7 +107,7 @@ class BinaryMatrix
     a_1_t = new_matrix_t[i_1]
     a_2_t = new_matrix_t[i_2]
     #a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2[0])
-    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2)
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_1) # change to i_1
     #new_matrix_t[i_1[0]] = a_c_1_2_t
     new_matrix_t[i_1] = a_c_1_2_t
     #new_matrix_t.delete_at(i_2[0])

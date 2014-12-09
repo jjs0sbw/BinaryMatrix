@@ -21,14 +21,15 @@ module Utilities
     id
   end
 
-  def compress_array(array_1, array_2, index_2)
+  def compress_array(array_1, array_2, index_1) # change to index_1
     sz = array_1.length - 1
     a_1 = array_1.dup
     a_2 = array_2.dup
     a_out = []
     (0..sz).each { |x| a_out[x] = a_1[x] + a_2[x] }
     (0..sz).each { |x| a_out[x] > 1 ? a_out[x] = 1 : a_out[x] }
-    a_out[index_2[0]] = 0
+    #a_out[index_2[0]] = 0
+    a_out[index_1] = 0 # change to index_1
     a_out
   end
   
