@@ -44,34 +44,56 @@ module Utilities
     matrix_out
   end
   
-  def swap_row_column(matrix, index_1, index_2)
+  def swap_row_column(index_1, index_2, matrix = bm,  matrix_index = bmi.mi)
     tm = matrix.dup
-    i1 = bmi.mi[index_1 - 1][0] 
-    i2 = bmi.mi[index_2 - 1][0] 
+    #i1 = bmi.mi[index_1 - 1][0] 
+    #i2 = bmi.mi[index_2 - 1][0] 
+    #p @binary_matrix.bmi.mi.length
+    p bmi.mi.length
+    p bmi.mi
+    i1 = bmi.mi.index(index_1)
+    i2 = bmi.mi.index(index_2)
+    p "The indexes are #{i1}  and #{i2}"
+    p "The indexes are #{index_1}  and #{index_2}"
 
-    ta1 = tm[i1 - 1] 
-    ta2 = tm[i2 - 1] 
+    #ta1 = tm[i1 - 1] 
+    #ta2 = tm[i2 - 1] 
+    ta1 = tm[i1] 
+    ta2 = tm[i2] 
 
-    tm[i1 - 1] = ta2 
-    tm[i2 - 1] = ta1 
+    #tm[i1 - 1] = ta2 
+    #tm[i2 - 1] = ta1 
+    tm[i1] = ta2 
+    tm[i2] = ta1 
+    #stopped here
     tmt = tm.transpose
-    tat1 = tmt[i1 - 1] 
-    tat2 = tmt[i2 - 1] 
-    tmt[i1 - 1] = tat2 
-    tmt[i2 - 1] = tat1 
+
+    #tat1 = tmt[i1 - 1] 
+    #tat2 = tmt[i2 - 1] 
+    tat1 = tmt[i1] 
+    tat2 = tmt[i2] 
+    #tmt[i1 - 1] = tat2 
+    #tmt[i2 - 1] = tat1 
+    tmt[i1] = tat2 
+    tmt[i2] = tat1 
+
     tout = tmt.transpose.dup 
     matrix = tout  #added matrix =
   end 
 
-  def swap_index(matrix, index_1, index_2)
-    tm = matrix.dup
-    i1 = bmi.mi[index_1 - 1][0]
-    i2 = bmi.mi[index_2 - 1][0] 
-    ta1 = tm[i1 - 1] 
-    ta2 = tm[i2 - 1] 
-    tm[i1 - 1] = ta2 
-    tm[i2 - 1] = ta1 
-    matrix = tm.dup # added dup and matrix =
+  def swap_index(index_1, index_2, matrix_index) # moved and renamed matrix
+    tm = matrix_index.dup
+    #i1 = bmi.mi[index_1 - 1][0]
+    #i2 = bmi.mi[index_2 - 1][0] 
+    i1 = bmi.mi.index(index_1)
+    i2 = bmi.mi.index(index_2)
+    #ta1 = tm[i1 - 1] 
+    #ta2 = tm[i2 - 1] 
+    ta1 = tm[i1] 
+    ta2 = tm[i2] 
+    tm[i1] = ta2 
+    tm[i2] = ta1 
+    matrix_index = tm.dup # added dup and matrix =
   end  
 
   def reachability_matrix(matrix)
