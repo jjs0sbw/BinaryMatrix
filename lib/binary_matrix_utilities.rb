@@ -49,12 +49,12 @@ module Utilities
     #i1 = bmi.mi[index_1 - 1][0] 
     #i2 = bmi.mi[index_2 - 1][0] 
     #p @binary_matrix.bmi.mi.length
-    p bmi.mi.length
-    p bmi.mi
+    #p bmi.mi.length
+    #p bmi.mi
     i1 = bmi.mi.index(index_1)
     i2 = bmi.mi.index(index_2)
-    p "The indexes are #{i1}  and #{i2}"
-    p "The indexes are #{index_1}  and #{index_2}"
+    #p "The indexes are #{i1}  and #{i2}"
+    #p "The indexes are #{index_1}  and #{index_2}"
 
     #ta1 = tm[i1 - 1] 
     #ta2 = tm[i2 - 1] 

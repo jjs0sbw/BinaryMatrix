@@ -81,21 +81,35 @@ class BinaryMatrix
     matrix_out
   end
 
-  def compress(index_1, index_2)
-    new_matrix = bm.dup 
-    i_1 = bmi.mi[index_1]
-    i_2 = bmi.mi[index_2]
-    a_1 = new_matrix[i_1[0]]
-    a_2 = new_matrix[i_2[0]]
-    a_c_1_2 = compress_array(a_1, a_2, i_2[0])
-    new_matrix[i_1[0]] = a_c_1_2
-    new_matrix.delete_at(i_2[0])
+  def compress(index_1, index_2, matrix = bm, matrix_index = bmi.mi)
+    #new_matrix = bm.dup 
+    new_matrix = matrix.dup 
+    #i_1 = bmi.mi[index_1]
+    #i_2 = bmi.mi[index_2]
+    i_1 = matrix_index.index(index_1)
+    i_2 = matrix_index.index(index_2)
+    #a_1 = new_matrix[i_1[0]]
+    #a_2 = new_matrix[i_2[0]]
+    a_1 = new_matrix[i_1]
+    a_2 = new_matrix[i_2]
+    #a_c_1_2 = compress_array(a_1, a_2, i_2[0])
+    a_c_1_2 = compress_array(a_1, a_2, i_2)
+    #new_matrix[i_1[0]] = a_c_1_2
+    new_matrix[i_1] = a_c_1_2
+    #new_matrix.delete_at(i_2[0])
+    new_matrix.delete_at(i_2)
     new_matrix_t = new_matrix.transpose.dup
-    a_1_t = new_matrix_t[i_1[0]]
-    a_2_t = new_matrix_t[i_2[0]]
-    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2[0])
-    new_matrix_t[i_1[0]] = a_c_1_2_t
-    new_matrix_t.delete_at(i_2[0])
-    bm = new_matrix_t.transpose.dup 
+    #a_1_t = new_matrix_t[i_1[0]]
+    #a_2_t = new_matrix_t[i_2[0]]
+    a_1_t = new_matrix_t[i_1]
+    a_2_t = new_matrix_t[i_2]
+    #a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2[0])
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2)
+    #new_matrix_t[i_1[0]] = a_c_1_2_t
+    new_matrix_t[i_1] = a_c_1_2_t
+    #new_matrix_t.delete_at(i_2[0])
+    new_matrix_t.delete_at(i_2)
+    #bm = new_matrix_t.transpose.dup 
+    matrix = new_matrix_t.transpose.dup 
   end
 end

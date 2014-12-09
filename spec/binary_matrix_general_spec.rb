@@ -102,7 +102,7 @@ describe BinaryMatrix do
   describe "#compress" do
     it "will compress two rows and columns into one" do
       temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
-      expect(@binary_matrix.compress(2, 6)).to eq temp_matrix_answer
+      expect(@binary_matrix.compress([2], [6])).to eq temp_matrix_answer # added brackets
     end
   end
 
@@ -146,7 +146,7 @@ describe BinaryMatrix do
     # City 1 and city 10 are at the same level, so the rows and columns must be merged
     describe "#compress" do
       it "will compress two rows and columns into one" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         puts "Compress rows columns 1 and 10\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
@@ -162,7 +162,7 @@ describe BinaryMatrix do
 
       describe "#enter_cell_content" do
       it "will enter a 1 into the selected matrix cell" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm)
         puts "Enter 8 is north of 1\n"
@@ -179,7 +179,7 @@ describe BinaryMatrix do
 
       describe "#swap_row_column" do
       it "will swap selected rows and columns to create proper alignment" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10)
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column([1, [10]], [8], @binary_matrix.bm, @binary_matrix.bmi.mi)
@@ -200,7 +200,7 @@ describe BinaryMatrix do
 
       describe "#enter_cell_content" do
       it "will enter a 1 into the selected matrix cell" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) #moved this up here
         #p @binary_matrix.bmi.mi.index([1, [10]]) #added for test..
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
@@ -224,7 +224,7 @@ describe BinaryMatrix do
 
       describe "#enter_cell_content" do
       it "will enter a 1 into the selected matrix cell" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) 
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
         #@binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
@@ -246,7 +246,7 @@ describe BinaryMatrix do
 
       describe "#enter_cell_content" do
       it "will enter a 1 into the selected matrix cell" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) 
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
         #@binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
@@ -269,7 +269,7 @@ describe BinaryMatrix do
           
       describe "#swap_row_column" do
       it "will swap the selected rows and columns" do
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) 
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
         #@binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
@@ -295,7 +295,7 @@ describe BinaryMatrix do
       end    
 
       def part_one
-        @binary_matrix.bm = @binary_matrix.compress(1, 10)
+        @binary_matrix.bm = @binary_matrix.compress([1], [10])
         @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(1, 10) 
         @binary_matrix.enter_cell_content([1, [10]], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
         #@binary_matrix.bm = @binary_matrix.swap_row_column(@binary_matrix.bm, 1, 8)
@@ -390,13 +390,536 @@ describe BinaryMatrix do
         logger.info "\n\nMatrix Index"
         logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
-      end                  
+      end     
+
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        puts "Enter 11 is north of 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 11 is north of 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end                               
+            
+      describe "#swap_row_column" do
+      it "will swap the selected matrix cell" do
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        puts "Swap rows columns 11 and 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nSwap rows columns 11 and 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end              
+
+      describe "#swap_row_column" do
+      it "will swap the selected matrix cell" do
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [11], @binary_matrix.bmi.mi)
+        puts "Swap rows columns 11 and 4"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nSwap rows columns 11 and 4\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end  
+
+      describe "#swap_row_column" do
+      it "will swap the selected matrix cell" do
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        puts "Swap rows columns 7 and 4"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nSwap rows columns 7 and 4\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#swap_row_column" do
+      it "will swap the selected matrix cell" do
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        puts "Swap rows columns 11 and 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nSwap rows columns 11 and 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end                                                                                                                                                                                                                                                                                            
                                       
-                                      
-                                      
+      def part_two
+        part_one
+        @binary_matrix.enter_cell_content([4], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [3], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [3], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([4], [7], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [11], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([4], [7], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([4], [7], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [11], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [11], @binary_matrix.bmi.mi)
+      end                                
       
 
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_two
+        @binary_matrix.enter_cell_content([6], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        puts "Enter 11 is north of 6"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 11 is north of 6\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end          
 
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_two
+        @binary_matrix.enter_cell_content([6], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        @binary_matrix.enter_cell_content([6], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([6], [9], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([6], [9], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        puts "Enter 9 is north of 6"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 9 is north of 6\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end                                                                                                                                      
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_two
+        @binary_matrix.enter_cell_content([6], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        @binary_matrix.enter_cell_content([6], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([6], [9], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([6], [9], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        @binary_matrix.enter_cell_content([9], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        puts "Enter 2 is north of 9"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 2 is north of 9\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end    
+
+      def part_three
+        part_two
+        @binary_matrix.enter_cell_content([6], [11], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        @binary_matrix.enter_cell_content([6], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([6], [9], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([6], [9], @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+        @binary_matrix.enter_cell_content([9], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+      end
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_three
+        @binary_matrix.enter_cell_content([2], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        puts "Enter 2 is north of 8"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 2 is north of 8\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end   
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_three
+        @binary_matrix.enter_cell_content([2], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([5], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        puts "Enter 2 is north of 5"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 2 is north of 5\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end    
+
+      describe "#compress" do
+      it "will compress row columns 5 and 11 into row columns 5" do
+        part_three
+        @binary_matrix.enter_cell_content([2], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([5], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.bm = @binary_matrix.compress([5], [11])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(5, 11)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        puts "Compress 5 and 11 into 5"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nCompress 5 and 11 into 5\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 into the selected matrix cell" do
+        part_three
+        @binary_matrix.enter_cell_content([2], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([5], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.bm = @binary_matrix.compress([5], [11])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(5, 11)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([1, [10]], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        puts "Enter 2 is north of 1-10"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 2 is north of 1-10\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      def part_four
+        part_three
+        @binary_matrix.enter_cell_content([2], [8], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([5], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.bm = @binary_matrix.compress([5], [11])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(5, 11)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([1, [10]], [2], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+      end
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 into the selected matrix cell" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        puts "Enter 3 is north of 9"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 3 is north of 9\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 into the selected matrix cell" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        puts "Enter 3 is north of 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 3 is north of 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 into the selected matrix cell" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        puts "Enter 9 is north of 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 9 is north of 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#compress" do
+      it "will compress row columns 3 and 6 into 3" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.compress([3], [6])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(3, 6) 
+        puts "Compress 3 and 6 into 3"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nCompress 3 and 6b into 3\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end      
+
+      describe "#swap_row_column" do
+      it "will swap_row_column 1-10 and 3-6 " do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.compress([3], [6])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(3, 6) 
+        @binary_matrix.bm = @binary_matrix.swap_row_column([1, [10]], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1, [10]], [3, [6]], @binary_matrix.bmi.mi)
+        puts "Swap rows columns 1-10 and 3-6"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nCompress 3 and 6b into 3\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end     
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.compress([3], [6])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(3, 6) 
+        @binary_matrix.bm = @binary_matrix.swap_row_column([1, [10]], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1, [10]], [3, [6]], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([9], [3, [6]], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        puts "Enter 3-6 is north of 9"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 3-6 is north of 9\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end       
+  
+      describe "#swap_row_column" do
+      it "will swap rows and column 3-6 and 9" do
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.compress([3], [6])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(3, 6) 
+        @binary_matrix.bm = @binary_matrix.swap_row_column([1, [10]], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1, [10]], [3, [6]], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([9], [3, [6]], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([9], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([9], [3, [6]], @binary_matrix.bmi.mi)
+        puts "Enter 3-6 is north of 9"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 3-6 is north of 9\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end     
+
+      def part_five  
+        part_four
+        @binary_matrix.enter_cell_content([9], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm) # infer data
+        @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm) 
+        @binary_matrix.enter_cell_content([7], [3], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([7], [9], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.compress([3], [6])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(3, 6) 
+        @binary_matrix.bm = @binary_matrix.swap_row_column([1, [10]], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1, [10]], [3, [6]], @binary_matrix.bmi.mi)
+        @binary_matrix.enter_cell_content([9], [3, [6]], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([9], [3, [6]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([9], [3, [6]], @binary_matrix.bmi.mi)
+      end
+    
+      describe "#compress" do
+      it "will compress rows and columns 9 and 12" do
+        part_five
+        @binary_matrix.bm = @binary_matrix.compress([9], [12])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(9, 12)
+        puts "Compress row and columns 9 and 12"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nCompress rows and columns 9 and 12\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end     
+
+      describe "#enter_cell_content" do
+      it "will enter a 1 in the selected matrix cell" do
+        part_five
+        @binary_matrix.bm = @binary_matrix.compress([9], [12])
+        @binary_matrix.bmi.mi = @binary_matrix.bmi.compress_index(9, 12)
+        @binary_matrix.enter_cell_content([7], [9, [12]], 1, @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bm = @binary_matrix.swap_row_column([7], [9, [12]], @binary_matrix.bm, @binary_matrix.bmi.mi)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([7], [9, [12]], @binary_matrix.bmi.mi)
+        puts "Enter 9-12 north of 7"
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        logger.info "\nEnter 9-12 north of 7\n"
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+        end
+      end     
 
 
 end
