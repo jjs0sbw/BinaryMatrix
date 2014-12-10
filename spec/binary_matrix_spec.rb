@@ -171,7 +171,7 @@ describe BinaryMatrix do
       it "will swap rows and columns to create proper alignment" do
         @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
         puts "Swap rows and columns 1 and 2\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
