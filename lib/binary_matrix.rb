@@ -75,9 +75,10 @@ class BinaryMatrix
   end
 
   def expand(matrix, index_1)
-    new_matrix = self.expand_end(matrix)
+    new_matrix = expand_end(matrix)
     last_index = new_matrix[0].length - 1
-    matrix_out = self.swap_row_column(new_matrix, index_1, last_index )
+    #matrix_out = self.swap_row_column(new_matrix, index_1, last_index )
+    matrix_out = swap_row_column([index_1], [last_index], new_matrix )
     matrix_out
   end
 
