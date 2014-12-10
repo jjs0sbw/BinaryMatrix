@@ -1,4 +1,4 @@
-b =require "#{File.dirname(__FILE__)}/binary_matrix/version"
+require "#{File.dirname(__FILE__)}/binary_matrix/version"
 require "#{File.dirname(__FILE__)}/matrix_index"
 require "#{File.dirname(__FILE__)}/binary_matrix_utilities"
 require "#{File.dirname(__FILE__)}/log_and_print"
@@ -23,13 +23,12 @@ class BinaryMatrix
     sum
   end
 
-  def enter_cell_content(index_1, index_2, number = 1, matrix = bm, matrix_index = bmi.mi)
+  def enter_cell_content(index_1, index_2, number = 1, matrix = bm, matrix_in = bmi.mi)
     number = 0 if index_1 == index_2
-    r_1 = bmi.mi.index(index_1)
-    r_2 = bmi.mi.index(index_2)
+    r_1 = matrix_in.index(index_1)
+    r_2 = matrix_in.index(index_2)
     matrix[r_1][r_2] = number
-    matrix 
-
+    matrix
   end
 
   def boolean_add(matrix_one, matrix_two)
@@ -77,25 +76,25 @@ class BinaryMatrix
   def expand(matrix, index_1)
     new_matrix = expand_end(matrix)
     last_index = new_matrix[0].length - 1
-    matrix_out = swap_row_column([index_1], [last_index], new_matrix )
+    matrix_out = swap_row_column([index_1], [last_index], new_matrix)
     matrix_out
   end
 
   def compress(index_1, index_2, matrix = bm, matrix_index = bmi.mi)
-    new_matrix = matrix.dup 
+    new_matrix = matrix.dup
     i_1 = matrix_index.index(index_1)
     i_2 = matrix_index.index(index_2)
     a_1 = new_matrix[i_1]
     a_2 = new_matrix[i_2]
-    a_c_1_2 = compress_array(a_1, a_2, i_1) 
+    a_c_1_2 = compress_array(a_1, a_2, i_1)
     new_matrix[i_1] = a_c_1_2
     new_matrix.delete_at(i_2)
     new_matrix_t = new_matrix.transpose.dup
     a_1_t = new_matrix_t[i_1]
     a_2_t = new_matrix_t[i_2]
-    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_1) 
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_1)
     new_matrix_t[i_1] = a_c_1_2_t
     new_matrix_t.delete_at(i_2)
-    matrix = new_matrix_t.transpose.dup 
+    new_matrix_t.transpose.dup
   end
 end
