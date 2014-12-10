@@ -77,43 +77,25 @@ class BinaryMatrix
   def expand(matrix, index_1)
     new_matrix = expand_end(matrix)
     last_index = new_matrix[0].length - 1
-    #matrix_out = self.swap_row_column(new_matrix, index_1, last_index )
     matrix_out = swap_row_column([index_1], [last_index], new_matrix )
     matrix_out
   end
 
   def compress(index_1, index_2, matrix = bm, matrix_index = bmi.mi)
-    #new_matrix = bm.dup 
     new_matrix = matrix.dup 
-    #i_1 = bmi.mi[index_1]
-    #i_2 = bmi.mi[index_2]
     i_1 = matrix_index.index(index_1)
     i_2 = matrix_index.index(index_2)
-    #p "Indexes are #{i_1}  and #{i_2}"
-    #a_1 = new_matrix[i_1[0]]
-    #a_2 = new_matrix[i_2[0]]
     a_1 = new_matrix[i_1]
     a_2 = new_matrix[i_2]
-    #p "a_1 is #{a_1}"
-    #p "a_2 is #{a_2}"
-    #a_c_1_2 = compress_array(a_1, a_2, i_2[0])
-    a_c_1_2 = compress_array(a_1, a_2, i_1) # change to i_1
-    #new_matrix[i_1[0]] = a_c_1_2
+    a_c_1_2 = compress_array(a_1, a_2, i_1) 
     new_matrix[i_1] = a_c_1_2
-    #new_matrix.delete_at(i_2[0])
     new_matrix.delete_at(i_2)
     new_matrix_t = new_matrix.transpose.dup
-    #a_1_t = new_matrix_t[i_1[0]]
-    #a_2_t = new_matrix_t[i_2[0]]
     a_1_t = new_matrix_t[i_1]
     a_2_t = new_matrix_t[i_2]
-    #a_c_1_2_t = compress_array(a_1_t, a_2_t, i_2[0])
-    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_1) # change to i_1
-    #new_matrix_t[i_1[0]] = a_c_1_2_t
+    a_c_1_2_t = compress_array(a_1_t, a_2_t, i_1) 
     new_matrix_t[i_1] = a_c_1_2_t
-    #new_matrix_t.delete_at(i_2[0])
     new_matrix_t.delete_at(i_2)
-    #bm = new_matrix_t.transpose.dup 
     matrix = new_matrix_t.transpose.dup 
   end
 end
