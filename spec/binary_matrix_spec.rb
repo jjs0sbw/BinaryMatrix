@@ -187,7 +187,7 @@ describe BinaryMatrix do
         it "will add a one to the matrix cell" do
           @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
           @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-          @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+          @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
           @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
           puts "Enter 1 is north of 3\n"
           puts @binary_matrix.bm.to_a.map(&:inspect)
@@ -204,7 +204,7 @@ describe BinaryMatrix do
         it "will create reachability matrix and infer information" do
           @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
           @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-          @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+          @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
           @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
           @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
           @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -224,7 +224,7 @@ describe BinaryMatrix do
          it "will enter a 1 into the specific cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -244,7 +244,7 @@ describe BinaryMatrix do
          it "will swap selected row and column" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -266,7 +266,7 @@ describe BinaryMatrix do
          it "will swap selected row and column" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -290,7 +290,7 @@ describe BinaryMatrix do
          it "will swap selected row and column" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -316,7 +316,7 @@ describe BinaryMatrix do
          it "will create reachability_matrix and infer information" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -345,7 +345,7 @@ describe BinaryMatrix do
          it "will enter a 1 into the proper matrix cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -374,7 +374,7 @@ describe BinaryMatrix do
          it "will swap the selected rows and columns" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -407,7 +407,7 @@ describe BinaryMatrix do
          it "will create reachability matrix and infer information" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -440,7 +440,7 @@ describe BinaryMatrix do
          it "will enter a 1 into the selected cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -474,7 +474,7 @@ describe BinaryMatrix do
          it "will calculate reachability_matrix and infer information" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -510,7 +510,7 @@ describe BinaryMatrix do
          it "will enter a 1 into the proper cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -547,7 +547,7 @@ describe BinaryMatrix do
          it "will swap the selected rows and columns" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -570,7 +570,7 @@ describe BinaryMatrix do
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
            @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
            puts "Swap row and column 3 and 6\n"
            puts @binary_matrix.bm.to_a.map(&:inspect)
            puts "Matrix Index .. \n"
@@ -586,7 +586,7 @@ describe BinaryMatrix do
          it "will enter a 1 in the selected cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -609,7 +609,7 @@ describe BinaryMatrix do
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
            @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([6], [5], 1, @binary_matrix.bm)
            puts "Enter 5 is north of 6\n"
            puts @binary_matrix.bm.to_a.map(&:inspect)
@@ -626,7 +626,7 @@ describe BinaryMatrix do
          it "will calculate reachability matrix and infer information" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -649,7 +649,7 @@ describe BinaryMatrix do
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
            @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([6], [5], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -668,7 +668,7 @@ describe BinaryMatrix do
          it "will enter a 1 in the selecte matrix cell" do
            @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -691,7 +691,7 @@ describe BinaryMatrix do
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
            @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([6], [5], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -734,7 +734,7 @@ describe BinaryMatrix do
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
            @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+           @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
            @binary_matrix.enter_cell_content([6], [5], 1, @binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
            @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
@@ -777,7 +777,7 @@ describe BinaryMatrix do
         @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
         @binary_matrix.enter_cell_content([3], [6], 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.swap_row_column([3], [6],@binary_matrix.bm, @binary_matrix.bmi.mi)
-        @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi,)
+        @binary_matrix.bmi.mi = @binary_matrix.swap_index([3], [6], @binary_matrix.bmi.mi)
         @binary_matrix.enter_cell_content([6], [5], 1, @binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
         @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
