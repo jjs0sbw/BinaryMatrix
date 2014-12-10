@@ -1,14 +1,9 @@
 # encoding : utf-8
 #
-# Utilities that support logging and printing 
+# Utilities that support logging and printing
 #
 # Copyright GPL 3 -- Joseph J. Simpson -- 2014 11-27-2014
-
-#require 'logger'
-
-#logger = Logger.new('log_one.txt')
-#logger.info 'This is a info logging file'
-
+# code to create log file
 module LogAndPrint
   def  square_print_with_comment(comment, matrix = bm)
     puts '  '
@@ -19,5 +14,5 @@ module LogAndPrint
 
   def write_log(log_name, data)
     File.open(log_name, 'a+') { |f| f.write(data)  }
-  end  
+  end
 end
