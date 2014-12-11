@@ -3,12 +3,27 @@ require "#{File.dirname(__FILE__)}/matrix_index"
 require "#{File.dirname(__FILE__)}/binary_matrix_utilities"
 require "#{File.dirname(__FILE__)}/log_and_print"
 
-# Binary matrix class for Warfield Augumented Boolean Logic
+# =Binary matrix class for Warfield Augumented Boolean Logic
+# This program creates an initial binary matrix populated with 
+# all zeros in the matrix cells.
+#
+# The system structuring relation associated with this version of
+# the binary matrix softare is a binary relation with the following properties:
+#  * transitive
+#  * irreflexive
+#  * asymmetric
+# See http://systemsconcept.org/
+
 class BinaryMatrix
   include Utilities
   include LogAndPrint
+  # Accessable attributes
   attr_accessor :size, :number_of_rows, :number_of_columns, :bm, :bmi
 
+  # Create the initial binary matrix filled with zeros of size (size by size).
+  # 
+  # Create the initial binary matrix index of size (size).
+  # * +size+ - Size of the square binary matrix. Length of the matrix index.
   def initialize(size)
     @size = size
     @number_of_rows = size
@@ -17,12 +32,20 @@ class BinaryMatrix
     @bmi = MatrixIndex.new(size)
   end
 
+  # Adds together all the values in the binary matrix (sum all values)
+  # * +matrix+ - The matrix containing the cells to be summed.
   def add(matrix = bm)
     sum = 0
     matrix.each { |x| x.each { |y| sum += y } }
     sum
   end
-
+  
+  # Enters a 1 into the selected matrix cell.
+  # * +index_1+ The first cell index
+  # * +index_2+ The second cell index
+  # * +number+ The number to be entered into the selected cell
+  # * +matrix+ The matrix that contains the cell
+  # * +matrix_in+ The index of the matrix
   def enter_cell_content(index_1, index_2, number = 1, matrix = bm, matrix_in = bmi.mi)
     number = 0 if index_1 == index_2
     r_1 = matrix_in.index(index_1)
@@ -30,7 +53,10 @@ class BinaryMatrix
     matrix[r_1][r_2] = number
     matrix
   end
-
+  
+  # Sums the contents from the same cell in each matrix.  Returning a matrix with the values.
+  # * +matrix_one+ The first square matirx to be added. Must be same size as matrix_two.
+  # * +matrix_two+ The second square matirx to be added. Must be same size as matrix_one.
   def boolean_add(matrix_one, matrix_two)
     temp_matrix_one = matrix_one.dup
     temp_matrix_two = matrix_two.dup
@@ -45,6 +71,9 @@ class BinaryMatrix
     temp_matrix_out
   end
 
+  # Subtracts matrix_two from matrix_one.  Must be careful to use this correctly.
+  # * +matrix_one+ The first matrix to subtract from matrix_two.
+  # * +matrix_two+ The second matrix.
   def boolean_subtract(matrix_one, matrix_two)
     temp_matrix_one = matrix_one.dup
     temp_matrix_two = matrix_two.dup
@@ -59,6 +88,9 @@ class BinaryMatrix
     temp_matrix_out
   end
 
+  # Multiplies matrix_one by matrix_two.  Provides a Boolean result
+  # * +matrix_one+ The first matrix to be multiplied.
+  # * +matrix_two+ The second matrix to be multiplied.
   def boolean_multiply(matrix_one, matrix_two)
     sz = (matrix_one[0].length - 1)
     id_1 = id_matrix(size).dup
@@ -72,14 +104,22 @@ class BinaryMatrix
     boolean_map(b_m_out)
     b_m_out
   end
-
+  
+  # Expands the selecred matrix by one row and colunm at selected index
+  # * +matrix+ The matrix to be expanded
+  # * +index_1+ The index where the matrix is expanded
   def expand(matrix, index_1)
     new_matrix = expand_end(matrix)
     last_index = new_matrix[0].length - 1
     matrix_out = swap_row_column([index_1], [last_index], new_matrix)
     matrix_out
   end
-
+  
+  # Compress the matrix by merging rows and colunms at index_2 with index_1.
+  # * +index_1+ The matrix index of the first row and column to be merged.
+  # * +index_2+ The matrix index of the second row and column to be merged.
+  # * +matrix+ The matrix to be compressed.
+  # * +matrix_index+ The index of the matrix to be compressed.
   def compress(index_1, index_2, matrix = bm, matrix_index = bmi.mi)
     new_matrix = matrix.dup
     i_1 = matrix_index.index(index_1)
