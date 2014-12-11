@@ -17,13 +17,19 @@
 
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+# =Matrix index class represents a matrix index
 class MatrixIndex
+  # Accessor items
   attr_accessor :mi
+  # Initialize a MatrixIndex of size size
+  # * +size+  The length of the matrix index
   def initialize(size)
     @mi = Array.new(size) { |i| Array.new(1, i + 1) }
   end
-
+  
+  # Compress the matrix index
+  # * +index_1+ The index to accept new data
+  # * +index_2+  The index that is deleted after data transfer
   def compress_index(index_1, index_2)
     temp_mi = mi.dup
     i1 = temp_mi.index([index_1])

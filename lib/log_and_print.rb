@@ -20,8 +20,11 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# code to create log file
+# =Code to create log file for BinaryMatrix class
 module LogAndPrint
+  # Outputs a square matrix with a comment lint to standard out
+  # * +comment+  The comment text
+  # * +matrix+ The target matrix
   def  square_print_with_comment(comment, matrix = bm)
     puts '  '
     puts comment
@@ -29,6 +32,9 @@ module LogAndPrint
     puts '  '
   end
 
+  # Output data to log file
+  # * +log_name+  The log file name
+  # * +data+ The data to write to the log file
   def write_log(log_name, data)
     File.open(log_name, 'a+') { |f| f.write(data)  }
   end
