@@ -6,16 +6,35 @@ describe BinaryMatrix do
   logger.info "\nThis is a info logging file -- Strict - One\n"
 
   before :each do
-    @binary_matrix = BinaryMatrix.new(14)
+    @binary_matrix = BinaryMatrix.new(12)
+  end
+
+  def enter(x, y)
+    @binary_matrix.enter_cell_content([x], [y], 1, @binary_matrix.bm)
+
+  end
+
+  def swap(x, y)
+    @binary_matrix.bm = @binary_matrix.swap_row_column([x], [y], @binary_matrix.bm, @binary_matrix.bmi.mi)
+    @binary_matrix.bmi.mi = @binary_matrix.swap_index([x], [y], @binary_matrix.bmi.mi)
+  end
+
+  def infer
+    @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
+    @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
   end
 
   def part_two
-    @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
-    @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2], @binary_matrix.bm, @binary_matrix.bmi.mi)
-    @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
-    @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
-    @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
-    @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+    enter(1, 2)
+    #@binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
+    swap(1, 2)
+    #@binary_matrix.bm = @binary_matrix.swap_row_column([1], [2], @binary_matrix.bm, @binary_matrix.bmi.mi)
+    #@binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
+    enter(3, 1)
+    #@binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
+    infer
+    #@binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
+    #@binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
     @binary_matrix.enter_cell_content([2], [4], 1, @binary_matrix.bm)
     @binary_matrix.bm = @binary_matrix.swap_row_column([2], [4], @binary_matrix.bm, @binary_matrix.bmi.mi)
     @binary_matrix.bmi.mi = @binary_matrix.swap_index([2], [4], @binary_matrix.bmi.mi)

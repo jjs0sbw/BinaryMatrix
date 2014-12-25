@@ -9,26 +9,54 @@ describe BinaryMatrix do
   end
   logger.info "\nThis is a info logging file\n"
   before :each do
-    @binary_matrix = BinaryMatrix.new(14)
+    @binary_matrix = BinaryMatrix.new(12)
   end
+
+   def enter(x, y)
+    @binary_matrix.enter_cell_content([x], [y], 1, @binary_matrix.bm)
+
+  end
+
+  def swap(x, y)
+    @binary_matrix.bm = @binary_matrix.swap_row_column([x], [y], @binary_matrix.bm, @binary_matrix.bmi.mi)
+    @binary_matrix.bmi.mi = @binary_matrix.swap_index([x], [y], @binary_matrix.bmi.mi)
+  end
+
+  def infer
+    @binary_matrix.bm = @binary_matrix.reachability_matrix(@binary_matrix.bm)
+    @binary_matrix.bm = @binary_matrix.subtract_id_matrix(@binary_matrix.bm)
+  end
+
+  def log(logger, message)
+	puts message
+        puts @binary_matrix.bm.to_a.map(&:inspect)
+        puts "Matrix Index .. \n"
+        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+	logger.info message
+        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        logger.info "\n\nMatrix Index"
+        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+  end
+
+
   describe "#new" do
     it "takes one parameter and returns a BinaryMatrix object" do
       expect(@binary_matrix).to be_a_kind_of(BinaryMatrix)
     end
 
-    it "has a size of tweleve (14)" do
-      expect(@binary_matrix.size).to be == 14
+    it "has a size of tweleve (12)" do
+      expect(@binary_matrix.size).to be == 12
     end
 
-    it "has tweleve (14) rows in the matrix" do
-      expect(@binary_matrix.number_of_rows).to be == 14
+    it "has tweleve (12) rows in the matrix" do
+      expect(@binary_matrix.number_of_rows).to be == 12
     end
 
-    it "has tweleve (14) columns in the matrix" do
-      expect(@binary_matrix.number_of_columns).to be == 14
+    it "has tweleve (12) columns in the matrix" do
+      expect(@binary_matrix.number_of_columns).to be == 12
     end
 
-    it "has a two dimensional tweleve (14) by tweleve (14) array" do
+    it "has a two dimensional tweleve (12) by tweleve (12) array" do
       expect(@binary_matrix.bm).to be_a_kind_of(Array)
     end
 
@@ -62,16 +90,6 @@ describe BinaryMatrix do
 
   end  
 
-#describe "#transpose" do
-#    it "will transpose the matrix contents" do
-#      temp_matrix = Array.new(5) { Array.new(5, 0) }
-#      @binary_matrix.enter_cell_content(1, 2)
-#      @binary_matrix.enter_cell_content(3, 1)
-#      t_matrix = @binary_matrix.transpose(@binary_matrix.bm)
-#      expect(@binary_matrix.transpose(@binary_matrix.bm)).to eq t_matrix
-#    end
-#  end
-
   describe "#boolean_add" do
     it "will add cell contents from two same size matrices" do
       temp_matrix_1 = Array.new(10) { Array.new(10, 1) }
@@ -97,21 +115,21 @@ describe BinaryMatrix do
 
   describe "#expand_end" do
     it "will expand the matrix by one row and column at the end" do
-      temp_matrix_answer = Array.new(15) { Array.new(15, 0) }
+      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
       expect(@binary_matrix.expand_end(@binary_matrix.bm)).to eq temp_matrix_answer
     end
   end
 
   describe "#expand" do
     it "will expand the matrix inserting a row and column at the given index " do
-      temp_matrix_answer = Array.new(15) { Array.new(15, 0) }
+      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
       expect(@binary_matrix.expand(@binary_matrix.bm, 4)).to eq temp_matrix_answer
     end
   end
 
   describe "#compress" do
     it "will compress two rows and columns into one" do
-      temp_matrix_answer = Array.new(13) { Array.new(13, 0) }
+      temp_matrix_answer = Array.new(11) { Array.new(11, 0) }
       expect(@binary_matrix.compress([2], [6])).to eq temp_matrix_answer
     end
   end
@@ -123,72 +141,79 @@ describe BinaryMatrix do
     it "will print the matrix in a square format with a commnet" do
       expect { @binary_matrix.square_print_with_comment("testOne", \
         @binary_matrix.bm)}.to output("  \ntestOne
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   \n").to_stdout
     end
   end
     describe "#write_log" do
       it "will log the matrix in a square format with a comment to a local file" do
-        puts "\n Binary Matrix .. Strict Ordering\n"
-        puts @binary_matrix.bm.to_a.map(&:inspect)
-        puts "Matrix Index .. \n"
-        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\n Enter base binary matrix.. Strict ordering\n"
-        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
-        logger.info "\n\nMatrix Index"
-        "#{@binary_matrix.bmi.mi.to_a{ logger.info inspect } }"
+        #puts "\n Binary Matrix .. Strict Ordering\n"
+        #puts @binary_matrix.bm.to_a.map(&:inspect)
+        #puts "Matrix Index .. \n"
+        #p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+	log(logger, "\n Enter base binary matrix.. Strict ordering\n")
+        #logger.info "\n Enter base binary matrix.. Strict ordering\n"
+        #"#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        #logger.info "\n\nMatrix Index"
+        #"#{@binary_matrix.bmi.mi.to_a{ logger.info inspect } }"
       end
     end
 
     describe "#enter_cell_content" do
       it "will add a one to the matrix cell" do
-        @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
-        puts "Enter 2 is north of 1\n"
-        puts @binary_matrix.bm.to_a.map(&:inspect)
-        puts "Matrix Index .. \n"
-        p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\nEnter 2 is north of 1\n"
-        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
-        logger.info "\n\nMatrix Index"
-        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+	enter(1, 2)
+        #@binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
+        #puts "Enter 2 is north of 1\n"
+        #puts @binary_matrix.bm.to_a.map(&:inspect)
+        #puts "Matrix Index .. \n"
+        #p @binary_matrix.bmi.mi.to_a.map(&:inspect)
+	log(logger, "\nEnter 2 is north of 1\n")
+        #logger.info "\nEnter 2 is north of 1\n"
+        #"#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        #logger.info "\n\nMatrix Index"
+        #logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end
   
     describe "#swap_row_column" do
       it "will swap rows and columns to create proper alignment" do
-        @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
-        @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-        @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
+	enter(1, 2)
+        #@binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
+	swap(1, 2)
+        #@binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
+        #@binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
         puts "Swap rows and columns 1 and 2\n"
         puts @binary_matrix.bm.to_a.map(&:inspect)
         puts "Matrix Index .. \n"
         p @binary_matrix.bmi.mi.to_a.map(&:inspect)
-        logger.info "\nSwap rows and columns 1 and 2\n"
-        "#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
-        logger.info "\n\nMatrix Index"
-        logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
+	log(logger, "\nSwap rows and columns 1 and 2\n")
+        #logger.info "\nSwap rows and columns 1 and 2\n"
+        #"#{@binary_matrix.bm.to_a.each{ |r| logger.info r.inspect } }"
+        #logger.info "\n\nMatrix Index"
+        #logger.info @binary_matrix.bmi.mi.to_a.map(&:inspect)
         end
       end  
 
       describe "#enter_cell_content" do
         it "will add a one to the matrix cell" do
-          @binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
-          @binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
-          @binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
-          @binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
+	  enter(1, 2)
+          #@binary_matrix.enter_cell_content([1], [2], 1, @binary_matrix.bm)
+	  swap(1, 2)
+          #@binary_matrix.bm = @binary_matrix.swap_row_column([1], [2],@binary_matrix.bm, @binary_matrix.bmi.mi)
+          #@binary_matrix.bmi.mi = @binary_matrix.swap_index([1], [2], @binary_matrix.bmi.mi)
+	  enter(3, 1)
+          #@binary_matrix.enter_cell_content([3], [1], 1, @binary_matrix.bm)
           puts "Enter 1 is north of 3\n"
           puts @binary_matrix.bm.to_a.map(&:inspect)
           puts "Matrix Index .. \n"
